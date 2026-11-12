@@ -673,3 +673,20 @@ if (document.readyState === 'loading') document.addEventListener('DOMContentLoad
   window.GalleryTablet.compactMedia.addEventListener('change',syncTabletHomeHeader);
   syncTabletHomeHeader();
 })();
+
+
+/* Gardari legal UI bootstrap: shared across all seven gallery HTML pages. */
+(function () {
+  var current = document.currentScript;
+  if (!current || !current.src || document.querySelector('script[data-gardari-legal-bootstrap]')) return;
+  var css = document.createElement('link');
+  css.rel = 'stylesheet';
+  css.href = new URL('./gardari-legal.css?v=1.0.0', current.src).href;
+  document.head.append(css);
+  var legal = document.createElement('script');
+  legal.src = new URL('./gardari-legal.js?v=1.0.0', current.src).href;
+  legal.defer = true;
+  legal.setAttribute('data-gardari-site', 'gallery');
+  legal.setAttribute('data-gardari-legal-bootstrap', '1');
+  document.head.append(legal);
+})();
